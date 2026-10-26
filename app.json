@@ -17,9 +17,11 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.pakpadel"
     },
     "web": {
+      "bundler": "metro",
       "output": "server",
       "favicon": "./assets/images/favicon.png"
     },
@@ -28,15 +30,49 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#080F0A",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
         }
-      ]
+      ],
+      "expo-sqlite",
+      "expo-apple-authentication",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow PakPadel to use your location to find nearby courts.",
+          "locationAlwaysAndWhenInUsePermission": "Allow PakPadel to use your location to find nearby courts.",
+          "isAndroidBackgroundLocationEnabled": false
+        }
+      ],
+      [
+        "react-native-nitro-google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.PLACEHOLDER-REPLACE-WITH-REVERSED-CLIENT-ID"
+        }
+      ],
+      [
+  "expo-build-properties",
+  {
+    "android": {
+      "cmakeVersion": "3.31.6"
+    }
+  }
+]
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "537dfa45-01c2-4ab7-8dbb-7aa33e62517d"
+      }
     }
   }
 }
