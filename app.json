@@ -38,6 +38,22 @@
       "expo-sqlite",
       "expo-apple-authentication",
       [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Barlow-Regular.ttf",
+            "./assets/fonts/Barlow-Medium.ttf",
+            "./assets/fonts/Barlow-SemiBold.ttf",
+            "./assets/fonts/Barlow-Bold.ttf",
+            "./assets/fonts/Barlow-ExtraBold.ttf",
+            "./assets/fonts/Barlow-Black.ttf",
+            "./assets/fonts/Barlow-Light.ttf",
+            "./assets/fonts/Barlow-Italic.ttf",
+            "./assets/fonts/Barlow-BoldItalic.ttf"
+          ]
+        }
+      ],
+      [
         "expo-location",
         {
           "locationWhenInUsePermission": "Allow PakPadel to use your location to find nearby courts.",

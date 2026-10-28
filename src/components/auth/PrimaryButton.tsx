@@ -1,6 +1,6 @@
 import { brand } from '@/theme/colors';
 import { radius, spacing } from '@/theme/spacing';
-import { fontSize, fontWeight } from '@/theme/typography';
+import { fontSize, fontFamily } from '@/theme/typography';
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, type StyleProp, type ViewStyle } from 'react-native';
 
 interface PrimaryButtonProps {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize:      fontSize.md,
-    fontWeight:    fontWeight.bold,
+    fontFamily: fontFamily.bold,
     color:         brand.onPrimary,
     letterSpacing: -0.2,
   },

@@ -3,7 +3,7 @@ import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } fr
 import { AppAssets } from '@/assets/images/AppAssets';
 import { light } from '@/theme/colors';
 import { radius, spacing } from '@/theme/spacing';
-import { fontSize, fontWeight } from '@/theme/typography';
+import { fontSize, fontFamily } from '@/theme/typography';
 
 type Provider = 'google' | 'apple';
 
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     flex:       1,
     textAlign:  'center',
     fontSize:   fontSize.base,
-    fontWeight: fontWeight.semibold,
+    fontFamily: fontFamily.semibold,
     color:      light.text,
   },
   loader: {

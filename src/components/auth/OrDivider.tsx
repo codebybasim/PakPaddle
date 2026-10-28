@@ -1,6 +1,6 @@
 import { light } from '@/theme/colors';
 import { spacing } from '@/theme/spacing';
-import { fontSize } from '@/theme/typography';
+import { fontFamily, fontSize } from '@/theme/typography';
 import { StyleSheet, Text, View } from 'react-native';
 
 export function OrDivider() {
@@ -16,16 +16,17 @@ export function OrDivider() {
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    alignItems:    'center',
-    gap:           spacing[3],
+    alignItems: 'center',
+    gap: spacing[3],
   },
   line: {
-    flex:            1,
-    height:          StyleSheet.hairlineWidth,
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
     backgroundColor: light.border,
   },
   text: {
     fontSize: fontSize.sm,
-    color:    light.textMuted,
+    fontFamily: fontFamily.regular,
+    color: light.textMuted,
   },
 });

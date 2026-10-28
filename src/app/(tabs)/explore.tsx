@@ -1,5 +1,5 @@
 import { light } from '@/theme/colors';
-import { fontSize, fontWeight } from '@/theme/typography';
+import { fontSize, fontFamily } from '@/theme/typography';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function ExploreScreen() {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize:   fontSize.xl,
-    fontWeight: fontWeight.bold,
+    fontFamily: fontFamily.bold,
     color:      light.text,
   },
 });

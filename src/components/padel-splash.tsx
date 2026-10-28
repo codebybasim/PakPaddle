@@ -29,18 +29,18 @@ import Animated, {
 import { scheduleOnRN } from 'react-native-worklets';
 
 import { brand, light } from '@/theme/colors';
-import { fontFamily, fontSize, fontWeight, letterSpacing } from '@/theme/typography';
+import { fontFamily, fontSize, letterSpacing } from '@/theme/typography';
 
 const { width: SW, height: SH } = Dimensions.get('screen');
 
 // ─── timing constants ────────────────────────────────────────────────────────
-const T_COURT    = 0;
-const T_PADDLE   = 300;
-const T_BALL     = 550;
+const T_COURT = 0;
+const T_PADDLE = 300;
+const T_BALL = 550;
 const T_WORDMARK = 850;
-const T_TAGLINE  = 1050;
-const T_FADEOUT  = 1650;
-const D_FADEOUT  = 350;
+const T_TAGLINE = 1050;
+const T_FADEOUT = 1650;
+const D_FADEOUT = 350;
 
 // Cubic bezier instances (Reanimated CSS-style)
 const EASE_OUT = cubicBezier(0.23, 1, 0.32, 1);
@@ -49,33 +49,35 @@ const EASE_OUT = cubicBezier(0.23, 1, 0.32, 1);
 
 // Court lines: scale X from 0 → 1 + fade in
 const courtKeyframe = new Keyframe({
-  0:   { opacity: 0, transform: [{ scaleX: 0 }] },
+  0: { opacity: 0, transform: [{ scaleX: 0 }] },
   100: { opacity: 1, transform: [{ scaleX: 1 }], easing: Easing.bezier(0.23, 1, 0.32, 1) },
 });
 
 // Paddle: slides in from bottom-right + rotates to -35°
 const paddleKeyframe = new Keyframe({
-  0:   { opacity: 0, transform: [{ translateX: 60 }, { translateY: 60 }, { rotate: '0deg' }] },
-  60:  { opacity: 1 },
-  100: { opacity: 1, transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: '-35deg' }],
-         easing: Easing.bezier(0.23, 1, 0.32, 1) },
+  0: { opacity: 0, transform: [{ translateX: 60 }, { translateY: 60 }, { rotate: '0deg' }] },
+  60: { opacity: 1 },
+  100: {
+    opacity: 1, transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: '-35deg' }],
+    easing: Easing.bezier(0.23, 1, 0.32, 1)
+  },
 });
 
 // Wordmark: slides up + fades in
 const wordmarkKeyframe = new Keyframe({
-  0:   { opacity: 0, transform: [{ translateY: 18 }] },
+  0: { opacity: 0, transform: [{ translateY: 18 }] },
   100: { opacity: 1, transform: [{ translateY: 0 }], easing: Easing.bezier(0.23, 1, 0.32, 1) },
 });
 
 // Tagline: fade only
 const taglineKeyframe = new Keyframe({
-  0:   { opacity: 0 },
+  0: { opacity: 0 },
   100: { opacity: 1, easing: Easing.bezier(0.23, 1, 0.32, 1) },
 });
 
 // Full overlay fade-out
 const fadeOutKeyframe = new Keyframe({
-  0:   { opacity: 1 },
+  0: { opacity: 1 },
   100: { opacity: 0, easing: Easing.bezier(0.77, 0, 0.175, 1) },
 });
 
@@ -87,7 +89,7 @@ interface SplashOverlayProps {
 
 export function PadelSplashOverlay({ onDone }: SplashOverlayProps) {
   // Ball position — spring bounce from off-screen top
-  const ballY   = useSharedValue(-120);
+  const ballY = useSharedValue(-120);
   const ballOpacity = useSharedValue(0);
   const hiddenNativeSplash = useRef(false);
 
@@ -100,16 +102,16 @@ export function PadelSplashOverlay({ onDone }: SplashOverlayProps) {
   const handleLayout = useCallback(() => {
     if (hiddenNativeSplash.current) return;
     hiddenNativeSplash.current = true;
-    SplashScreen.hideAsync().catch(() => {});
+    SplashScreen.hideAsync().catch(() => { });
   }, []);
 
   const startBall = useCallback(() => {
     ballOpacity.set(withTiming(1, { duration: 80 }));
     ballY.set(
       withSequence(
-        withSpring(0,  { duration: 500, dampingRatio: 0.55, velocity: 8 }),
+        withSpring(0, { duration: 500, dampingRatio: 0.55, velocity: 8 }),
         withSpring(-14, { duration: 220, dampingRatio: 0.6 }),
-        withSpring(0,  { duration: 300, dampingRatio: 1 }),
+        withSpring(0, { duration: 300, dampingRatio: 1 }),
       ),
     );
   }, [ballY, ballOpacity]);
@@ -251,17 +253,15 @@ const styles = StyleSheet.create({
     // entering animation applies rotate — base style is neutral
   },
   wordmark: {
-    fontFamily: fontFamily?.display ?? 'system-ui',
     fontSize: fontSize['3xl'],
-    fontWeight: fontWeight.heavy,
+    fontFamily: fontFamily.extraBold,
     color: brand.amber,
     letterSpacing: letterSpacing.tight,
     includeFontPadding: false,
   },
   tagline: {
-    fontFamily: fontFamily?.body ?? 'system-ui',
     fontSize: fontSize.base,
-    fontWeight: fontWeight.medium,
+    fontFamily: fontFamily.medium,
     color: brand.amber,
     letterSpacing: letterSpacing.wider,
     textTransform: 'uppercase' as const,
@@ -271,45 +271,45 @@ const styles = StyleSheet.create({
 // Court geometry
 const COURT_W = SW * 0.68;
 const COURT_H = COURT_W * 0.55;
-const LINE_W  = 1.5;
-const LINE_C  = brand.amberLight; // amber, dimmed
+const LINE_W = 1.5;
+const LINE_C = brand.amberLight; // amber, dimmed
 
 const court = StyleSheet.create({
   container: {
-    width:  COURT_W,
+    width: COURT_W,
     height: COURT_H,
   },
   outerRect: {
-    position:    'absolute',
+    position: 'absolute',
     top: 0, left: 0, right: 0, bottom: 0,
     borderWidth: LINE_W,
     borderColor: LINE_C,
     borderRadius: 4,
   },
   centerV: {
-    position:        'absolute',
-    left:            '50%',
-    top:             0,
-    bottom:          0,
-    width:           LINE_W,
+    position: 'absolute',
+    left: '50%',
+    top: 0,
+    bottom: 0,
+    width: LINE_W,
     backgroundColor: LINE_C,
-    marginLeft:      -LINE_W / 2,
+    marginLeft: -LINE_W / 2,
   },
   netH: {
-    position:        'absolute',
-    left:            0,
-    right:           0,
-    top:             '50%',
-    height:          LINE_W * 2,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: '50%',
+    height: LINE_W * 2,
     backgroundColor: brand.amber,
-    opacity:         0.9,
-    marginTop:       -LINE_W,
+    opacity: 0.9,
+    marginTop: -LINE_W,
   },
   serviceH: {
-    position:        'absolute',
-    left:            '10%',
-    right:           '10%',
-    height:          LINE_W,
+    position: 'absolute',
+    left: '10%',
+    right: '10%',
+    height: LINE_W,
     backgroundColor: LINE_C,
   },
 });
@@ -320,32 +320,32 @@ const paddle = StyleSheet.create({
     alignItems: 'center',
   },
   head: {
-    width:           54,
-    height:          54,
-    borderRadius:    27,
+    width: 54,
+    height: 54,
+    borderRadius: 27,
     backgroundColor: brand.amberLight,
     // perforated look via slight transparency at edges isn't possible in pure Views,
     // but the solid amber circle reads clearly as a padel head
   },
   neck: {
-    width:           14,
-    height:          12,
+    width: 14,
+    height: 12,
     backgroundColor: '#1A1A1A',  // darker amber
   },
   handle: {
-    width:           10,
-    height:          36,
-    borderRadius:    5,
+    width: 10,
+    height: 36,
+    borderRadius: 5,
     backgroundColor: '#1A1A1A',
-    borderWidth:     1.5,
-    borderColor:     'rgba(11, 245, 19, 0.4)',
+    borderWidth: 1.5,
+    borderColor: 'rgba(11, 245, 19, 0.4)',
   },
   grip: {
-    width:           12,
-    height:          8,
-    borderRadius:    4,
+    width: 12,
+    height: 8,
+    borderRadius: 4,
     backgroundColor: '#111',
-    borderWidth:     1,
-    borderColor:     brand.amber,
+    borderWidth: 1,
+    borderColor: brand.amber,
   },
 });

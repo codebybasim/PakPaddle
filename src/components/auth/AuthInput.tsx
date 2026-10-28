@@ -17,7 +17,7 @@ import Animated, {
 import { brand, light } from '@/theme/colors';
 import { duration } from '@/theme/motion';
 import { radius, spacing } from '@/theme/spacing';
-import { fontSize, fontWeight } from '@/theme/typography';
+import { fontFamily, fontSize } from '@/theme/typography';
 
 interface AuthInputProps extends TextInputProps {
   label: string;
@@ -26,7 +26,7 @@ interface AuthInputProps extends TextInputProps {
 }
 
 export const AuthInput = forwardRef<ElementRef<typeof TextInput>, AuthInputProps>(function AuthInput(
-  { label,placeholder, error, rightElement, style, onFocus, onBlur, ...rest },
+  { label, placeholder, error, rightElement, style, onFocus, onBlur, ...rest },
   ref,
 ) {
   const focused = useSharedValue(0);
@@ -104,33 +104,34 @@ const styles = StyleSheet.create({
     gap: spacing[1.5],
   },
   label: {
-    fontSize:      fontSize.sm,
-    fontWeight:    fontWeight.semibold,
-    color:         light.textSecondary,
+    fontSize: fontSize.sm,
+    fontFamily: fontFamily.semibold,
+    color: light.textSecondary,
     letterSpacing: 0.2,
   },
   inputContainer: {
-    flexDirection:     'row',
-    alignItems:        'center',
-    backgroundColor:   light.card,
-    borderRadius:      radius.md,
-    borderWidth:       1.5,
-    borderColor:       light.border,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: light.card,
+    borderRadius: radius.md,
+    borderWidth: 1.5,
+    borderColor: light.border,
     paddingHorizontal: spacing[4],
-    height:            52,
+    height: 52,
     // Shadow for focus glow
-    shadowColor:       brand.primary,
-    shadowOffset:      { width: 0, height: 0 },
-    shadowRadius:      6,
-    elevation:         0,
+    shadowColor: brand.primary,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 6,
+    elevation: 0,
   },
   inputError: {
     borderColor: brand.error,
   },
   input: {
-    flex:            1,
-    fontSize:        fontSize.base,
-    color:           light.inputText,
+    flex: 1,
+    fontSize: fontSize.base,
+    fontFamily: fontFamily.regular,
+    color: light.inputText,
     paddingVertical: 0,
   },
   rightSlot: {
@@ -138,7 +139,8 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: fontSize.xs,
-    color:    brand.error,
+    fontFamily: fontFamily.regular,
+    color: brand.error,
     marginTop: 2,
   },
 });

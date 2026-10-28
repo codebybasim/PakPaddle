@@ -22,7 +22,7 @@ import { PrimaryButton } from '@/components/auth/PrimaryButton';
 import { SocialButton } from '@/components/auth/SocialButton';
 import { brand, light, palette } from '@/theme/colors';
 import { spacing } from '@/theme/spacing';
-import { fontSize, fontWeight, letterSpacing } from '@/theme/typography';
+import { fontSize, fontFamily, letterSpacing } from '@/theme/typography';
 import { supabase } from '../../../lib/supabase';
 
 export default function SignupScreen() {
@@ -304,7 +304,7 @@ const strength = StyleSheet.create({
   },
   label: {
     fontSize:   fontSize.xs,
-    fontWeight: fontWeight.semibold,
+    fontFamily: fontFamily.semibold,
     width:      42,
     textAlign:  'right',
   },
@@ -334,13 +334,13 @@ const styles = StyleSheet.create({
   },
   brandName: {
     fontSize:      fontSize.xl,
-    fontWeight:    fontWeight.heavy,
+    fontFamily: fontFamily.extraBold,
     color:         palette.green,
     letterSpacing: letterSpacing.tight,
   },
   headline: {
     fontSize:   fontSize.xl,
-    fontWeight: fontWeight.bold,
+    fontFamily: fontFamily.bold,
     color:      light.text,
     marginTop:  spacing[1],
   },
@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
   },
   termsLink: {
     color:      brand.primary,
-    fontWeight: fontWeight.medium,
+    fontFamily: fontFamily.medium,
   },
 
   // ── Footer ───────────────────────────────────────────────────────────────────
@@ -384,6 +384,6 @@ const styles = StyleSheet.create({
   footerLink: {
     fontSize:   fontSize.base,
     color:      brand.primary,
-    fontWeight: fontWeight.semibold,
+    fontFamily: fontFamily.semibold,
   },
 });
