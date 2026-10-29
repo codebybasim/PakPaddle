@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
-import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
+import { router } from 'expo-router';
+import { ImageBackground, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { MATCH_CARD_W, type FeaturedMatch } from '@/constants/home';
 import { brand, light, palette } from '@/theme/colors';
@@ -14,7 +15,13 @@ interface MatchCardProps {
 
 export function MatchCard({ item, liked, onLike }: MatchCardProps) {
   return (
-    <View style={styles.wrap}>
+    <TouchableOpacity
+      style={styles.wrap}
+      activeOpacity={0.8}
+      onPress={() => router.push(`/match/${item.id}` as Parameters<typeof router.push>[0])}
+      accessibilityRole="button"
+      accessibilityLabel={`Open match: ${item.title}`}
+    >
       <ImageBackground
         source={{ uri: item.image }}
         style={styles.bg}
@@ -32,7 +39,13 @@ export function MatchCard({ item, liked, onLike }: MatchCardProps) {
         </View>
 
         {/* Heart */}
-        <Pressable onPress={onLike} style={styles.heartBtn} hitSlop={10}>
+        <Pressable
+          onPress={(e) => { e.stopPropagation?.(); onLike(); }}
+          style={styles.heartBtn}
+          hitSlop={10}
+          accessibilityRole="button"
+          accessibilityLabel={liked ? 'Unlike match' : 'Like match'}
+        >
           <Ionicons
             name={liked ? 'heart' : 'heart-outline'}
             size={20}
@@ -50,7 +63,7 @@ export function MatchCard({ item, liked, onLike }: MatchCardProps) {
           </View>
         </View>
       </ImageBackground>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -69,11 +82,10 @@ const styles = StyleSheet.create({
     marginRight: spacing[4],
     borderRadius: radius.xl,
     overflow: 'hidden',
-    // shadowColor: '#000',
-    // shadowOffset: { width: 0, height: 6 },
-    // shadowOpacity: 0.18,
-    // shadowRadius: 12,
-    // elevation: 5,
+  },
+  wrapPressed: {
+    opacity: 0.88,
+    transform: [{ scale: 0.975 }],
   },
   bg: {
     width: MATCH_CARD_W,

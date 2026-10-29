@@ -3,6 +3,8 @@ import { FlatList, Keyboard, Pressable, ScrollView, StyleSheet, Text, View } fro
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { router } from 'expo-router';
+
 import { CourtCard } from '@/components/home/CourtCard';
 import { MatchCard } from '@/components/home/MatchCard';
 import { SearchableTopBar } from '@/components/home/SearchableTopBar';
@@ -64,7 +66,7 @@ export default function HomeScreen() {
       {/* ── Headline ───────────────────────────────────────────────────── */}
       <Animated.View entering={FadeInDown.duration(380).delay(60)} style={styles.headlineWrap}>
         <Text style={styles.greeting}>Hello, {firstName} 👋</Text>
-        <Text style={styles.headline}>FIND YOUR{'\n'}NEXT MATCH</Text>
+        <Text style={styles.headline}>BOOK. PLAY. WIN.</Text>
         <Text style={styles.subheadline}>Players, courts and games near you</Text>
       </Animated.View>
 
@@ -140,7 +142,7 @@ export default function HomeScreen() {
 
       {/* ── Featured Courts ─────────────────────────────────────────────── */}
       <Animated.View entering={FadeInDown.duration(380).delay(300)}>
-        <SectionHeader title="Featured Courts" onSeeAll={() => { }} />
+        <SectionHeader title="Featured Courts" onSeeAll={() => router.push('/courts' as Parameters<typeof router.push>[0])} />
         {FEATURED_COURTS.map((court) => (
           <CourtCard key={court.id} court={court} />
         ))}
@@ -168,10 +170,10 @@ const styles = StyleSheet.create({
     marginBottom: spacing[1],
   },
   headline: {
-    fontSize: fontSize.hero,
+    fontSize: fontSize['3xl'],
     fontFamily: fontFamily.extraBold,
     color: light.text,
-    lineHeight: fontSize['4xl'],
+    lineHeight: fontSize['2xl'],
     letterSpacing: letterSpacing.tight,
   },
   subheadline: {

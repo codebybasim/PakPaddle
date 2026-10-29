@@ -26,11 +26,11 @@ function RootNavigator() {
       if (session?.user) {
         store.dispatch(
           setUser({
-            id:        session.user.id,
-            email:     session.user.email ?? null,
-            fullName:  session.user.user_metadata?.full_name ?? null,
+            id: session.user.id,
+            email: session.user.email ?? null,
+            fullName: session.user.user_metadata?.full_name ?? null,
             avatarUrl: session.user.user_metadata?.avatar_url ?? null,
-            provider:  (session.user.app_metadata?.provider as any) ?? 'email',
+            provider: (session.user.app_metadata?.provider as any) ?? 'email',
           }),
         );
       } else {
@@ -42,11 +42,11 @@ function RootNavigator() {
       if (session?.user) {
         store.dispatch(
           setUser({
-            id:        session.user.id,
-            email:     session.user.email ?? null,
-            fullName:  session.user.user_metadata?.full_name ?? null,
+            id: session.user.id,
+            email: session.user.email ?? null,
+            fullName: session.user.user_metadata?.full_name ?? null,
             avatarUrl: session.user.user_metadata?.avatar_url ?? null,
-            provider:  (session.user.app_metadata?.provider as any) ?? 'email',
+            provider: (session.user.app_metadata?.provider as any) ?? 'email',
           }),
         );
       } else {
@@ -65,6 +65,20 @@ function RootNavigator() {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(auth)" />
         <Stack.Screen name="(tabs)" />
+        <Stack.Screen
+          name="courts/index"
+          options={{
+            animation: 'slide_from_right',
+            animationDuration: 220,
+          }}
+        />
+        <Stack.Screen
+          name="match/[id]"
+          options={{
+            animation: 'slide_from_right',
+            animationDuration: 220,
+          }}
+        />
       </Stack>
 
       {/* Splash stays on top until its animation sequence completes */}

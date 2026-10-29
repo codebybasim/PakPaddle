@@ -4,18 +4,20 @@
     "slug": "pakpadel",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/ios/iTunesArtwork@3x.png",
     "scheme": "pakpadel",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/ios/iTunesArtwork@3x.png",
+      "supportsTablet": true,
+      "infoPlist": {
+        "CADisableMinimumFrameDurationOnPhone": true
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/ios/iTunesArtwork@3x.png",
+        "backgroundColor": "#01411C"
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.anonymous.pakpadel"
@@ -31,8 +33,14 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#080F0A",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "image": "./assets/ios/iTunesArtwork@3x.png",
+          "imageWidth": 160,
+          "resizeMode": "contain",
+          "dark": {
+            "backgroundColor": "#080F0A",
+            "image": "./assets/ios/iTunesArtwork@3x.png",
+            "imageWidth": 160
+          }
         }
       ],
       "expo-sqlite",
@@ -68,13 +76,13 @@
         }
       ],
       [
-  "expo-build-properties",
-  {
-    "android": {
-      "cmakeVersion": "3.31.6"
-    }
-  }
-]
+        "expo-build-properties",
+        {
+          "android": {
+            "cmakeVersion": "3.31.6"
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
